@@ -1,11 +1,19 @@
 import React from 'react'
+
 import './Card.css'
 
-const Card = () => {
+const Card = ({ company, industry, logo, pub_date }) => {
+  console.log(company, industry, logo, pub_date)
+
+  console.log(10 * 3 - 3)
+
   return (
-    <div className='Card'>
-      <h2>Card</h2>
-    </div>
+    <li className='Card'>
+      <img src={logo} alt='logo' />
+      <h2>{company}</h2>
+      <p>{industry}</p>
+      <p>{pub_date}</p>
+    </li>
   )
 }
 
