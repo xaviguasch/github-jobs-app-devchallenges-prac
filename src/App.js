@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import SearchAndFilter from './components/SearchAndFilter'
-import ResultsContainer from './components/ResultsContainer'
+import Pagination from './components/Pagination'
 
 import './App.css'
 
@@ -32,7 +32,8 @@ function App() {
           <h1>Github Jobs</h1>
 
           <SearchAndFilter />
-          <ResultsContainer companies={jobsData.results} />
+
+          <Pagination data={jobsData.results} pageLimit={3} dataLimit={5} />
         </div>
       )}
     </div>
