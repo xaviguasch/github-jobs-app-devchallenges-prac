@@ -90,6 +90,25 @@ ul {
   color: var(--clr-title-black-text);
 }
 
+.company-name {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-12);
+}
+
+.industry {
+}
+
+.company-size {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-12);
+}
+
+.headquarters__text {
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-12);
+  color: var(--clr-grey-text);
+}
+
 /* ================== */
 /* Links */
 /* ================== */

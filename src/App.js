@@ -36,7 +36,7 @@ function App() {
 
           <SearchAndFilter />
 
-          <Pagination data={jobsData.results} pageLimit={3} dataLimit={5} />
+          <Pagination data={jobsData.results} pageLimit={3} dataLimit={4} />
           <Footer />
         </div>
       )}

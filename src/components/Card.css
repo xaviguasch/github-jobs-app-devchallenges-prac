@@ -1,3 +1,44 @@
 .Card {
   background: var(--clr-white-bg);
+  border-radius: 0.25em;
+
+  box-shadow: 0px 2px 4px 0px hsla(0, 0%, 0%, 0.05);
+  padding: 0.65em 0.75em 0.75em;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+
+.Card__image {
+  width: 90px;
+}
+
+.Card__text {
+  flex: 1;
+}
+
+.industry {
+  margin-top: 0.275em;
+}
+
+.company-size {
+  margin-top: 0.65em;
+  display: inline-block;
+  padding: 0.275em 0.6em;
+  border: 1px solid var(--clr-dark-blue-text);
+  border-radius: 0.5em;
+}
+
+.headquarters {
+  margin-top: 1.25em;
+  display: flex;
+  justify-items: flex-start;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.headquarters .material-icons-round {
+  color: var(--clr-grey-text);
 }
