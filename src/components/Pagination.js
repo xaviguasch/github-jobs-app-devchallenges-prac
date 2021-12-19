@@ -36,15 +36,18 @@ const Pagination = ({ data, pageLimit, dataLimit }) => {
     <div className='Pagination'>
       <h2>Pagination component</h2>
       <div>
-        {getPaginatedData().map((el, idx) => (
-          <Card
-            key={el.id}
-            company={el.name}
-            industry={el.industries[0].name}
-            logo={el.refs.logo_image}
-            pub_date={el.publication_date}
-          />
-        ))}
+        <div className='card-container'>
+          {getPaginatedData().map((el, idx) => (
+            <Card
+              key={el.id}
+              company={el.name}
+              industry={el.industries[0].name}
+              logo={el.refs.logo_image}
+              size={el.size.name}
+              headquarters={el.locations[0].name}
+            />
+          ))}
+        </div>
 
         <div className='pagination'>
           <button

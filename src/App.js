@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import SearchAndFilter from './components/SearchAndFilter'
 import Pagination from './components/Pagination'
+import Footer from './components/Footer'
 
 import './App.css'
 
@@ -26,14 +27,17 @@ function App() {
   if (error) return <h1>{error}</h1>
 
   return (
-    <div className='App'>
+    <div className='App container'>
       {jobsData && (
         <div>
-          <h1>Github Jobs</h1>
+          <h1 className='title'>
+            <span className='bold'>Github</span> Jobs
+          </h1>
 
           <SearchAndFilter />
 
           <Pagination data={jobsData.results} pageLimit={3} dataLimit={5} />
+          <Footer />
         </div>
       )}
     </div>

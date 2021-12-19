@@ -2,17 +2,18 @@ import React from 'react'
 
 import './Card.css'
 
-const Card = ({ company, industry, logo, pub_date }) => {
-  console.log(company, industry, logo, pub_date)
+const Card = ({ company, industry, logo, size, headquarters }) => {
+  console.log(company, industry, logo)
 
   console.log(10 * 3 - 3)
 
   return (
     <li className='Card'>
       <img src={logo} alt='logo' />
-      <h2>{company}</h2>
+      <h2 className='company-name'>{company}</h2>
       <p>{industry}</p>
-      <p>{pub_date}</p>
+      <p>{size}</p>
+      <p>{headquarters}</p>
     </li>
   )
 }

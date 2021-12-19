@@ -14,7 +14,7 @@
 :root {
   --ff-main: 'Roboto', sans-serif;
 
-  --fw-ligth: 300;
+  --fw-light: 300;
   --fw-regular: 400;
   --fw-medium: 500;
   /* --fw-semi-bold: 600; */
@@ -59,6 +59,7 @@
 
   /* Background */
   --clr-soft-grey-bg: hsla(228, 38%, 97%, 1);
+  --clr-white-bg: hsla(0, 0%, 100%, 1);
 }
 
 body {
@@ -78,4 +79,32 @@ img {
 
 ul {
   list-style: none;
+}
+
+/* ================== */
+/* Typography */
+/* ================== */
+.title {
+  font-size: var(--fs-24);
+  font-weight: var(--fw-light);
+  color: var(--clr-title-black-text);
+}
+
+/* ================== */
+/* Links */
+/* ================== */
+
+/* ================== */
+/* Buttons & inputs */
+/* ================== */
+
+/* ================== */
+/* Utility styles */
+/* ================== */
+.container {
+  padding: 0.75em 0.75em 1.5em;
+}
+
+.bold {
+  font-weight: var(--fw-bold);
 }
