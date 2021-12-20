@@ -52,28 +52,28 @@ const Pagination = ({ data, pageLimit, dataLimit }) => {
         <div className='pagination'>
           <button
             onClick={goToPreviousPage}
-            className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
+            className={`btn btn--prev ${currentPage === 1 ? 'disabled' : ''}`}
           >
-            prev
+            <span class='material-icons-round'>arrow_back_ios</span>
           </button>
 
-          {/* show page numbers */}
           {getPaginationGroup().map((item, index) => (
             <button
               key={index}
               onClick={changePage}
-              className={`paginationItem ${currentPage === item ? 'active' : null}`}
+              className={`btn btn--paginationItem ${
+                currentPage === item ? 'active' : null
+              }`}
             >
-              <span>{item}</span>
+              {item}
             </button>
           ))}
 
-          {/* next button */}
           <button
             onClick={goToNextPage}
-            className={`next ${currentPage === pages ? 'disabled' : ''}`}
+            className={`btn btn--next ${currentPage === pages ? 'disabled' : ''}`}
           >
-            next
+            <span class='material-icons-round'>navigate_next</span>
           </button>
         </div>
       </div>

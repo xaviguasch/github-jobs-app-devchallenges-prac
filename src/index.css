@@ -116,6 +116,46 @@ ul {
 /* ================== */
 /* Buttons & inputs */
 /* ================== */
+.btn {
+  cursor: pointer;
+}
+
+.btn--paginationItem {
+  padding: 0.625em 0.875em;
+  border: 1px solid var(--clr-grey-text);
+  border-radius: 0.25em;
+}
+
+.btn--paginationItem:hover,
+.btn--paginationItem:focus {
+  border: 1px solid var(--clr-electric-blue-text);
+  color: var(--clr-electric-blue-text);
+}
+
+.btn--paginationItem.active {
+  background-color: var(--clr-electric-blue-text);
+  border: 1px solid var(--clr-electric-blue-text);
+  color: var(--clr-white-bg);
+  pointer-events: none;
+}
+
+.btn--prev,
+.btn--next {
+  background: #fff;
+  border: none;
+  padding: 10px;
+  color: blue;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.btn--prev.disabled,
+.btn--next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}
 
 /* ================== */
 /* Utility styles */
