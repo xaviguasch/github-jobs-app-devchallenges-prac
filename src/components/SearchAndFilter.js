@@ -4,61 +4,83 @@ import RadioButton from './RadioButton'
 
 import './SearchAndFilter.css'
 
-const SearchAndFilter = () => {
-  const [inputSearch, setInputSearch] = useState('')
+const SearchAndFilter = ({ sendNewSearch }) => {
+  const [inputSearchCompany, setInputSearchCompany] = useState('')
+  const [location, setLocation] = useState('London')
 
-  const [radioCity, setRadioCity] = useState('London')
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    sendNewSearch({
+      company: inputSearchCompany,
+      location,
+    })
+
+    setInputSearchCompany('')
+    setLocation('')
+  }
 
   const handleCityChange = (e) => {
-    setInputSearch(e.target.value)
+    setInputSearchCompany(e.target.value)
+  }
+
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value)
   }
 
   const handleLondonChange = () => {
-    setRadioCity('London')
+    setLocation('London')
   }
   const handleAmsterdamChange = () => {
-    setRadioCity('Amsterdam')
+    setLocation('Amsterdam')
   }
   const handleNewYorkChange = () => {
-    setRadioCity('New York')
+    setLocation('New York')
   }
   const handleBerlinChange = () => {
-    setRadioCity('Berlin')
+    setLocation('Berlin')
   }
 
   return (
     <div className='SearchAndFilter'>
-      <h2>SearchAndFilter</h2>
-
-      <form action='' className='form-search'>
+      <form action='' className='form-search' onSubmit={handleFormSubmit}>
         <input
           className='input-search__company'
           type='text'
-          value={inputSearch}
+          value={inputSearchCompany}
           onChange={handleCityChange}
         />
+        <button>Search</button>
 
         <h3>Location</h3>
+
+        <input
+          className='input-search__location'
+          type='text'
+          value={location}
+          onChange={handleLocationChange}
+          name=''
+          id=''
+        />
 
         <div>
           <RadioButton
             label='London'
-            value={radioCity === 'London'}
+            value={location === 'London'}
             onChange={handleLondonChange}
           />
           <RadioButton
             label='Amsterdam'
-            value={radioCity === 'Amsterdam'}
+            value={location === 'Amsterdam'}
             onChange={handleAmsterdamChange}
           />
           <RadioButton
             label='New York'
-            value={radioCity === 'New York'}
+            value={location === 'New York'}
             onChange={handleNewYorkChange}
           />
           <RadioButton
             label='Berlin'
-            value={radioCity === 'Berlin'}
+            value={location === 'Berlin'}
             onChange={handleBerlinChange}
           />
         </div>

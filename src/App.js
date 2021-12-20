@@ -24,6 +24,10 @@ function App() {
       .catch((error) => setError(error.message))
   }
 
+  const handleNewSearch = (newSearch) => {
+    console.log(newSearch)
+  }
+
   if (error) return <h1>{error}</h1>
 
   return (
@@ -34,7 +38,7 @@ function App() {
             <span className='bold'>Github</span> Jobs
           </h1>
 
-          <SearchAndFilter />
+          <SearchAndFilter sendNewSearch={handleNewSearch} />
 
           <Pagination data={jobsData.results} pageLimit={3} dataLimit={4} />
           <Footer />

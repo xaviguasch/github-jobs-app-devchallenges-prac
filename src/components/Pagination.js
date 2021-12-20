@@ -54,7 +54,7 @@ const Pagination = ({ data, pageLimit, dataLimit }) => {
             onClick={goToPreviousPage}
             className={`btn btn--prev ${currentPage === 1 ? 'disabled' : ''}`}
           >
-            <span class='material-icons-round'>arrow_back_ios</span>
+            <span className='material-icons-round'>arrow_back_ios</span>
           </button>
 
           {getPaginationGroup().map((item, index) => (
@@ -73,7 +73,7 @@ const Pagination = ({ data, pageLimit, dataLimit }) => {
             onClick={goToNextPage}
             className={`btn btn--next ${currentPage === pages ? 'disabled' : ''}`}
           >
-            <span class='material-icons-round'>navigate_next</span>
+            <span className='material-icons-round'>navigate_next</span>
           </button>
         </div>
       </div>
