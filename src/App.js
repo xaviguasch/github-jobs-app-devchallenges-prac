@@ -11,11 +11,11 @@ function App() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    getDataFromAPI()
+    // getDataFromAPI()
   }, [])
 
   const getDataFromAPI = () => {
-    fetch(`https://www.themuse.com/api/public/companies?location=Chicago%2C%20IL&page=2`)
+    fetch(`https://www.themuse.com/api/public/jobs?page=1&title=entry&category=IT`)
       .then((res) => {
         if (res.ok) return res.json()
         throw new Error('something went wrong while requesting posts')
@@ -25,25 +25,44 @@ function App() {
   }
 
   const handleNewSearch = (newSearch) => {
-    console.log(newSearch)
+    const searchStr = newSearch.category
+
+    let final = ''
+
+    if (searchStr.includes(' ')) {
+      const [first, second] = searchStr.split(' ')
+      const firstUpper = first[0].toUpperCase() + first.slice(1)
+      const secondUpper = second[0].toUpperCase() + second.slice(1)
+
+      final = firstUpper + '%20' + secondUpper
+    } else {
+      final = searchStr[0].toUpperCase() + searchStr.slice(1)
+    }
+
+    console.log(final)
+
+    fetch(`https://www.themuse.com/api/public/jobs?category=${final}&page=2`)
+      .then((res) => {
+        if (res.ok) return res.json()
+        throw new Error('something went wrong while requesting posts')
+      })
+      .then((data) => getDataFromAPI(data))
   }
 
   if (error) return <h1>{error}</h1>
 
   return (
     <div className='App container'>
-      {jobsData && (
-        <div>
-          <h1 className='title'>
-            <span className='bold'>Github</span> Jobs
-          </h1>
+      <div>
+        <h1 className='title'>
+          <span className='bold'>Github</span> Jobs
+        </h1>
 
-          <SearchAndFilter sendNewSearch={handleNewSearch} />
+        <SearchAndFilter sendNewSearch={handleNewSearch} />
 
-          <Pagination data={jobsData.results} pageLimit={3} dataLimit={4} />
-          <Footer />
-        </div>
-      )}
+        {jobsData && <Pagination data={jobsData.results} pageLimit={3} dataLimit={4} />}
+        <Footer />
+      </div>
     </div>
   )
 }

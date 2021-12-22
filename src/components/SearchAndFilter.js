@@ -5,40 +5,39 @@ import RadioButton from './RadioButton'
 import './SearchAndFilter.css'
 
 const SearchAndFilter = ({ sendNewSearch }) => {
-  const [inputSearchCompany, setInputSearchCompany] = useState('')
-  const [location, setLocation] = useState('London')
+  const [inputSearchCategory, setInputSearchCategory] = useState('')
+  // const [location, setLocation] = useState('London')
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
     sendNewSearch({
-      company: inputSearchCompany,
-      location,
+      category: inputSearchCategory,
     })
 
-    setInputSearchCompany('')
-    setLocation('')
+    setInputSearchCategory('')
+    // setLocation('')
   }
 
-  const handleCityChange = (e) => {
-    setInputSearchCompany(e.target.value)
+  const handleCatChange = (e) => {
+    setInputSearchCategory(e.target.value)
   }
 
-  const handleLocationChange = (e) => {
-    setLocation(e.target.value)
-  }
+  // const handleLocationChange = (e) => {
+  //   setLocation(e.target.value)
+  // }
 
-  const handleLondonChange = () => {
-    setLocation('London')
-  }
-  const handleAmsterdamChange = () => {
-    setLocation('Amsterdam')
-  }
-  const handleNewYorkChange = () => {
-    setLocation('New York')
-  }
-  const handleBerlinChange = () => {
-    setLocation('Berlin')
-  }
+  // const handleLondonChange = () => {
+  //   setLocation('London')
+  // }
+  // const handleAmsterdamChange = () => {
+  //   setLocation('Amsterdam')
+  // }
+  // const handleNewYorkChange = () => {
+  //   setLocation('New York')
+  // }
+  // const handleBerlinChange = () => {
+  //   setLocation('Berlin')
+  // }
 
   return (
     <div className='SearchAndFilter'>
@@ -46,14 +45,12 @@ const SearchAndFilter = ({ sendNewSearch }) => {
         <input
           className='input-search__company'
           type='text'
-          value={inputSearchCompany}
-          onChange={handleCityChange}
+          value={inputSearchCategory}
+          onChange={handleCatChange}
         />
         <button>Search</button>
 
-        <h3>Location</h3>
-
-        <input
+        {/* <input
           className='input-search__location'
           type='text'
           value={location}
@@ -83,7 +80,7 @@ const SearchAndFilter = ({ sendNewSearch }) => {
             value={location === 'Berlin'}
             onChange={handleBerlinChange}
           />
-        </div>
+        </div> */}
       </form>
     </div>
   )

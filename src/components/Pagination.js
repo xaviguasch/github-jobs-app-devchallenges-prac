@@ -40,11 +40,12 @@ const Pagination = ({ data, pageLimit, dataLimit }) => {
           {getPaginatedData().map((el, idx) => (
             <Card
               key={el.id}
-              company={el.name}
-              industry={el.industries[0].name}
-              logo={el.refs.logo_image}
-              size={el.size.name}
-              headquarters={el.locations[0].name}
+              data={el}
+              category={el.categories[0].name}
+              company={el.company.name}
+              level={el.levels[0].name}
+              location={el.locations[0].name}
+              title={el.name}
             />
           ))}
         </div>
