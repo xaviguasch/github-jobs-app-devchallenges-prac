@@ -14,8 +14,8 @@ function App() {
     // getDataFromAPI()
   }, [])
 
-  const getDataFromAPI = () => {
-    fetch(`https://www.themuse.com/api/public/jobs?page=1&title=entry&category=IT`)
+  const getDataFromAPI = (category) => {
+    fetch(`https://www.themuse.com/api/public/jobs?category=${category}&page=2`)
       .then((res) => {
         if (res.ok) return res.json()
         throw new Error('something went wrong while requesting posts')
@@ -41,12 +41,7 @@ function App() {
 
     console.log(final)
 
-    fetch(`https://www.themuse.com/api/public/jobs?category=${final}&page=2`)
-      .then((res) => {
-        if (res.ok) return res.json()
-        throw new Error('something went wrong while requesting posts')
-      })
-      .then((data) => getDataFromAPI(data))
+    getDataFromAPI(final)
   }
 
   if (error) return <h1>{error}</h1>
