@@ -8,11 +8,8 @@ import './App.css'
 
 function App() {
   const [jobsData, setJobsData] = useState()
+  const [cities, setCities] = useState()
   const [error, setError] = useState('')
-
-  useEffect(() => {
-    // getDataFromAPI()
-  }, [])
 
   const getDataFromAPI = (category) => {
     fetch(`https://www.themuse.com/api/public/jobs?category=${category}&page=2`)
@@ -20,7 +17,12 @@ function App() {
         if (res.ok) return res.json()
         throw new Error('something went wrong while requesting posts')
       })
-      .then((data) => setJobsData(data))
+      .then((data) => {
+        setJobsData(data)
+
+        const locations = data.results.map((result) => result.locations[0].name)
+        setCities(locations)
+      })
       .catch((error) => setError(error.message))
   }
 
