@@ -4,7 +4,7 @@ import RadioButton from './RadioButton'
 
 import './SearchAndFilter.css'
 
-const SearchAndFilter = ({ sendNewSearch }) => {
+const SearchAndFilter = ({ sendNewSearch, cities }) => {
   const [inputSearchCategory, setInputSearchCategory] = useState('')
   // const [location, setLocation] = useState('London')
 
@@ -49,6 +49,16 @@ const SearchAndFilter = ({ sendNewSearch }) => {
           onChange={handleCatChange}
         />
         <button>Search</button>
+
+        {cities && (
+          <select>
+            {cities.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+        )}
 
         {/* <input
           className='input-search__location'

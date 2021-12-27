@@ -21,7 +21,9 @@ function App() {
         setJobsData(data)
 
         const locations = data.results.map((result) => result.locations[0].name)
-        setCities(locations)
+
+        const uniqueLocations = [...new Set(locations)]
+        setCities(uniqueLocations)
       })
       .catch((error) => setError(error.message))
   }
@@ -55,7 +57,7 @@ function App() {
           <span className='bold'>Github</span> Jobs
         </h1>
 
-        <SearchAndFilter sendNewSearch={handleNewSearch} />
+        <SearchAndFilter sendNewSearch={handleNewSearch} cities={cities} />
 
         {jobsData && <Pagination data={jobsData.results} pageLimit={3} dataLimit={4} />}
         <Footer />
