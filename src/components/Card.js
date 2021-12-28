@@ -3,8 +3,6 @@ import React from 'react'
 import './Card.css'
 
 const Card = ({ data, category, company, level, location, title }) => {
-  console.log(data)
-  console.log(category, company, level, location, title)
   return (
     <div className='Card'>
       <div className='Card__image'>

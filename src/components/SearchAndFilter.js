@@ -4,40 +4,25 @@ import RadioButton from './RadioButton'
 
 import './SearchAndFilter.css'
 
-const SearchAndFilter = ({ sendNewSearch, cities }) => {
+const SearchAndFilter = ({ sendNewSearch, cities, location, changeLocation }) => {
   const [inputSearchCategory, setInputSearchCategory] = useState('')
-  // const [location, setLocation] = useState('London')
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
     sendNewSearch({
       category: inputSearchCategory,
+      location,
     })
-
     setInputSearchCategory('')
-    // setLocation('')
   }
 
   const handleCatChange = (e) => {
     setInputSearchCategory(e.target.value)
   }
 
-  // const handleLocationChange = (e) => {
-  //   setLocation(e.target.value)
-  // }
-
-  // const handleLondonChange = () => {
-  //   setLocation('London')
-  // }
-  // const handleAmsterdamChange = () => {
-  //   setLocation('Amsterdam')
-  // }
-  // const handleNewYorkChange = () => {
-  //   setLocation('New York')
-  // }
-  // const handleBerlinChange = () => {
-  //   setLocation('Berlin')
-  // }
+  const handleSelectChange = (e) => {
+    changeLocation(e.target.value)
+  }
 
   return (
     <div className='SearchAndFilter'>
@@ -51,7 +36,7 @@ const SearchAndFilter = ({ sendNewSearch, cities }) => {
         <button>Search</button>
 
         {cities && (
-          <select>
+          <select value={location} onChange={handleSelectChange}>
             {cities.map((city) => (
               <option key={city} value={city}>
                 {city}
@@ -59,38 +44,6 @@ const SearchAndFilter = ({ sendNewSearch, cities }) => {
             ))}
           </select>
         )}
-
-        {/* <input
-          className='input-search__location'
-          type='text'
-          value={location}
-          onChange={handleLocationChange}
-          name=''
-          id=''
-        />
-
-        <div>
-          <RadioButton
-            label='London'
-            value={location === 'London'}
-            onChange={handleLondonChange}
-          />
-          <RadioButton
-            label='Amsterdam'
-            value={location === 'Amsterdam'}
-            onChange={handleAmsterdamChange}
-          />
-          <RadioButton
-            label='New York'
-            value={location === 'New York'}
-            onChange={handleNewYorkChange}
-          />
-          <RadioButton
-            label='Berlin'
-            value={location === 'Berlin'}
-            onChange={handleBerlinChange}
-          />
-        </div> */}
       </form>
     </div>
   )

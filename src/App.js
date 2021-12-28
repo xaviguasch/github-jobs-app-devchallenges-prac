@@ -11,6 +11,8 @@ function App() {
   const [cities, setCities] = useState()
   const [error, setError] = useState('')
 
+  const [location, setLocation] = useState('')
+
   const getDataFromAPI = (category) => {
     fetch(`https://www.themuse.com/api/public/jobs?category=${category}&page=2`)
       .then((res) => {
@@ -23,6 +25,7 @@ function App() {
         const locations = data.results.map((result) => result.locations[0].name)
 
         const uniqueLocations = [...new Set(locations)]
+
         setCities(uniqueLocations)
       })
       .catch((error) => setError(error.message))
@@ -48,6 +51,15 @@ function App() {
     getDataFromAPI(final)
   }
 
+  const changeLocation = (newLocation) => {
+    setLocation(newLocation)
+  }
+
+  const filteredData = jobsData.results.filter(
+    (job) => job.locations[0].name === location
+  )
+  console.log(filteredData)
+
   if (error) return <h1>{error}</h1>
 
   return (
@@ -57,9 +69,14 @@ function App() {
           <span className='bold'>Github</span> Jobs
         </h1>
 
-        <SearchAndFilter sendNewSearch={handleNewSearch} cities={cities} />
+        <SearchAndFilter
+          sendNewSearch={handleNewSearch}
+          cities={cities}
+          changeLocation={changeLocation}
+          location={location}
+        />
 
-        {jobsData && <Pagination data={jobsData.results} pageLimit={3} dataLimit={4} />}
+        {jobsData && <Pagination data={filteredData} pageLimit={3} dataLimit={4} />}
         <Footer />
       </div>
     </div>

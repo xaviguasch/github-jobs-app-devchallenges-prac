@@ -5,7 +5,6 @@ import Card from './Card'
 import './Pagination.css'
 
 const Pagination = ({ data, pageLimit, dataLimit }) => {
-  console.log(data.length)
   const [pages] = useState(Math.round(data.length / dataLimit))
   const [currentPage, setCurrentPage] = useState(1)
 
