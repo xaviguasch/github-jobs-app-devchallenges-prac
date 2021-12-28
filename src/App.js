@@ -20,7 +20,7 @@ function App() {
         throw new Error('something went wrong while requesting posts')
       })
       .then((data) => {
-        setJobsData(data)
+        setJobsData(data.results)
 
         const locations = data.results.map((result) => result.locations[0].name)
 
@@ -53,12 +53,15 @@ function App() {
 
   const changeLocation = (newLocation) => {
     setLocation(newLocation)
-  }
 
-  const filteredData = jobsData.results.filter(
-    (job) => job.locations[0].name === location
-  )
-  console.log(filteredData)
+    const newFilteredData = jobsData.filter(
+      (job) => job.locations[0].name === newLocation
+    )
+
+    console.log(newFilteredData)
+
+    setJobsData(newFilteredData)
+  }
 
   if (error) return <h1>{error}</h1>
 
@@ -76,7 +79,7 @@ function App() {
           location={location}
         />
 
-        {jobsData && <Pagination data={filteredData} pageLimit={3} dataLimit={4} />}
+        {jobsData && <Pagination data={jobsData} pageLimit={3} dataLimit={4} />}
         <Footer />
       </div>
     </div>
