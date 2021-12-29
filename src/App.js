@@ -8,7 +8,12 @@ import './App.css'
 
 function App() {
   const [jobsData, setJobsData] = useState()
+  const [filteredJobsData, setFilteredJobsData] = useState()
+
   const [cities, setCities] = useState()
+  const [levels, setLevels] = useState()
+  const [pickedLevel, setPickedLevel] = useState('')
+
   const [error, setError] = useState('')
 
   const [location, setLocation] = useState('')
@@ -23,10 +28,12 @@ function App() {
         setJobsData(data.results)
 
         const locations = data.results.map((result) => result.locations[0].name)
-
         const uniqueLocations = [...new Set(locations)]
-
         setCities(uniqueLocations)
+
+        const levels = data.results.map((result) => result.levels[0].name)
+        const uniqueLevels = [...new Set(levels)]
+        setLevels(uniqueLevels)
       })
       .catch((error) => setError(error.message))
   }
@@ -58,9 +65,29 @@ function App() {
       (job) => job.locations[0].name === newLocation
     )
 
-    console.log(newFilteredData)
+    if (pickedLevel) {
+      const finalFilteredData = newFilteredData.filter(
+        (job) => job.levels[0].name === pickedLevel
+      )
+      setFilteredJobsData(finalFilteredData)
+    } else {
+      setFilteredJobsData(newFilteredData)
+    }
+  }
 
-    setJobsData(newFilteredData)
+  const changeLevel = (newLevel) => {
+    setPickedLevel(newLevel)
+
+    const newFilteredData = jobsData.filter((job) => job.levels[0].name === newLevel)
+
+    if (location) {
+      const finalFilteredData = newFilteredData.filter(
+        (job) => job.locations[0].name === location
+      )
+      setFilteredJobsData(finalFilteredData)
+    } else {
+      setFilteredJobsData(newFilteredData)
+    }
   }
 
   if (error) return <h1>{error}</h1>
@@ -77,9 +104,14 @@ function App() {
           cities={cities}
           changeLocation={changeLocation}
           location={location}
+          levels={levels}
+          handlePickedLevel={changeLevel}
+          pickedLevel={pickedLevel}
         />
 
-        {jobsData && <Pagination data={jobsData} pageLimit={3} dataLimit={4} />}
+        {jobsData && (
+          <Pagination data={filteredJobsData || jobsData} pageLimit={3} dataLimit={4} />
+        )}
         <Footer />
       </div>
     </div>

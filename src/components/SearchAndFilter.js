@@ -4,7 +4,15 @@ import RadioButton from './RadioButton'
 
 import './SearchAndFilter.css'
 
-const SearchAndFilter = ({ sendNewSearch, cities, location, changeLocation }) => {
+const SearchAndFilter = ({
+  sendNewSearch,
+  cities,
+  location,
+  changeLocation,
+  levels,
+  handlePickedLevel,
+  pickedLevel,
+}) => {
   const [inputSearchCategory, setInputSearchCategory] = useState('')
 
   const handleFormSubmit = (e) => {
@@ -22,6 +30,10 @@ const SearchAndFilter = ({ sendNewSearch, cities, location, changeLocation }) =>
 
   const handleSelectChange = (e) => {
     changeLocation(e.target.value)
+  }
+
+  const handleRadioButtonChange = (e) => {
+    handlePickedLevel(e.target.name)
   }
 
   return (
@@ -43,6 +55,19 @@ const SearchAndFilter = ({ sendNewSearch, cities, location, changeLocation }) =>
               </option>
             ))}
           </select>
+        )}
+
+        {levels && (
+          <div>
+            {levels.map((level, i) => (
+              <RadioButton
+                key={i}
+                label={level}
+                value={pickedLevel === level}
+                onChange={handleRadioButtonChange}
+              />
+            ))}
+          </div>
         )}
       </form>
     </div>
